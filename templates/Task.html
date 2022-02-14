@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Goal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+ <!-- Bootstrap Core CSS -->
+<link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="/static/css/style.css" rel='stylesheet' type='text/css' />
+<link href="/static/css/font-awesome.css" rel="stylesheet">
+<!-- jQuery -->
+<script src="/static/js/jquery.min.js"></script>
+<style type="text/css">
+input:disabled + label {/*禁用的指针*/
+	cursor: not-allowed
+	}
+.Radio input,
+.Checkbox input {
+	display: none
+	}
+.Radio label,
+.Checkbox label {
+	padding: 0 16px 0 0;
+	display: inline-block;
+	cursor: pointer;
+	position: relative
+	}
+.Radio label:before,
+.Checkbox label:before {
+	box-sizing: border-box;
+	content: "";
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	border: 1px solid #999;
+	margin: 0 8px;
+	vertical-align: middle;
+	display: inline-block;
+	transition: 0.1S;
+	}
+.Radio label:hover:before,
+.Checkbox label:hover:before {
+	border-color: #00a4ff;
+	}
+.Radio input:disabled + label:before,
+.Checkbox input:disabled + label:before {
+	background-color: #CCC;
+	border-color: #999;
+	opacity: 0.5;
+	}
+.Radio input:disabled + label,
+.Checkbox input:disabled + label {
+	opacity: 0.5;
+	}
+.Radio input:checked + label:before {
+	border: 5px solid #00a4ff;
+	}
+.Checkbox label:before {
+	{#background: url(/static/images/ico_tick.svg) no-repeat center;#}
+	background-size: 0;
+	border-radius: 4px;
+	transition: 0.2S;
+	}
+.Checkbox input:checked + label:before {
+	background-color: #00a4ff;
+	background-size: 16px;
+	border-color: #00a4ff;
+	}
+.HoverLabel label {
+	display: block;
+	border-radius: 4px;
+	padding: 4px;
+	width: 100%;
+	}
+.HoverLabel label:hover {
+	background-color: #EEE;
+	}
+</style>
+</head>
+<body>
+<!-- //star -->
+
+     <!-- Navigation -->
+       <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; min-height: 70px;">
+            <div class="navbar-header" style="margin-top:7px">
+                <a class="navbar-brand" href="/mysrl/">HKUSRL MySRL</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-nav navbar-right">
+            	<span class="navbar-brand"  style="margin-top:7px">Welcome</span>
+                {% if request.session.is_login %}
+
+            	<span class="navbar-brand"  style="margin-top:7px">{{ request.session.user_name }}</span>
+                {% else %}
+                <h1>You are not login</h1>
+                {% endif %}
+            	<a class="navbar-brand btn btn-success btn-warng1"  style="margin-top:10px; height: 45px;" href="/logout/">Exit</a>
+
+			</ul>
+            <!-- /.navbar-static-side -->
+        </nav>
+<div style="margin:30px">
+    <div class="content_bottom">
+         <div class="col-md-12 span_3">
+            <div class="col-md-6" >
+                <div style="margin:30px">
+                    <p style="border: #1a1a1a;font-size: large">Monitoring</p>
+                    <p>In operational performance terms, self-monitoring usually involves keeping a physical record of one’s academic performance (written logs, wrist counter tallies, and audio- or videotape recordings for example). Such records can provide information about the quality and the outcomes of a student’s academic performance. Self-monitoring can help students discriminate between effective and ineffective performance, reveal the inadequacy of a learning strategy, and prompt the students to find a more suitable one, and also foster reflective thinking.</p>
+                    <p>To enhance your self-monitoring skills, these are the four things you can do:</p>
+                    <ol>
+                    <li> Decide whether self-monitoring is necessary: change or improve some aspect of your approach to academic learning
+                    </li>
+                    <li>Determine what to monitor: specify a problem area and behaviors
+                    </li>
+                    <li>Decide on a means for monitoring the behavior: e.g. log for recording
+                    </li>
+                    <li>Decide how to evaluate and react to the information gather through self-monitoring
+                    </li>
+                    </ol>
+                    <p>Key techniques: keep learning records, track learning status</p>
+                    <p>Zimmerman, B. J., & Paulsen, A. S. (1995). Self-monitoring during collegiate studying: An invaluable tool for academic self-regulation. New Directions for Teaching and Learning, 1995(63), 13-27. doi:https://doi.org/10.1002/tl.37219956305
+                    </p><br>
+                    <p style="border: #1a1a1a;font-size: large">Organizing</p>
+                    <p>Organization refers to the ability of a learner to select the appropriate information and organize their thoughts during a learning process. For example, through homework assignments, students will read and summarize textual passages followed by a quiz based on these readings. Below are some selected learning strategies than can be considered:
+                    </p>
+                    <ol>
+                    <li> Clarifying difficulties encountered. Slowing down to read more carefully and checking back and rereading when text meaning is unclear.
+                    </li>
+                    <li>Finding the main idea. Analyzing passages, such as a paragraph, and identifying the main idea that is being discussed.
+                    </li>
+                    <li>
+                        Summarization. Paring down passages to their core meaning by eliminating trivial or redundant information, substituting superordinate terms for lists of items, integrating a series of events with a superordinate action term, and inventing a topic sentence.
+                    </li>
+                    <li>Relating text to prior knowledge. Relating ideas in text to previously stored information, often in the form of analogies, examples, extensions, and comparisons.
+                    </li>
+                    </ol>
+                    <p>Key techniques: summarize, list main ideas, highlight key concepts</p>
+                    <p>Zimmerman, B. J., Bonner, S., & Kovach, R. (1996). Goal 3: Developing text comprehension and summarization skills. In Developing self-regulated learners: Beyond achievement to self-efficacy (pp. 47-67, Chapter viii, 147 Pages). Washington: American Psychological Association, American
+                    </p><br>
+                    <p style="border: #1a1a1a;font-size: large">Elaborating</p>
+                    <p>
+                        Elaboration refers to the ability to connect prior knowledge with new information with the objective of remembering the new material. Below are some selected learning strategies than can be considered:
+                    </p>
+                    <ol>
+                    <li> Recording strategies. Be selective about what you include in your notes. Write down only main ideas and supporting facts. Listen for summary statements and write them down. Listen for signal words, for example, “there are four reasons.” Trying to write everything down burdens a student
+with trivial and often results in the student’s not being able to keep up with the lecture.
+                    </li>
+                     <li>
+                         Linear outlines. A revision strategy involving a linear framework lists the topics and subtopics in traditional outline form, leaving
+                     </li>
+                    <li>
+                        Mapping outlines. A revision strategy involving the use of graphic representations to relate information visually, such as tree diagrams, flow charts, concept webs, and two dimensional matrices. The type of visual structure must be
+chosen on the basis of the material, for example, a lecture comparing and contrasting religions can be captured using a two dimensional matrix.
+                    </li>
+                    <li>
+                        Cornell system. The written page is divided vertically with one column for recording and another for revising using one or more of the revision strategies listed above.
+                    </li>
+
+                    </ol>
+                    <p>Key techniques: paraphrase, brain storming, collaborate, note taking</p>
+                    <p>
+                        A. Lilian, Ah-Choo, K., & Soon-Hin, H. (2021). Investigating self-regulated learning strategies for digital learning relevancy. Malaysian Journal of Learning and Instruction, 18(1), 29-64. https://doi.org/10.32890/mjli2021.18.1.2
+                    </p>
+                    <p>Zimmerman, B. J., Bonner, S., & Kovach, R. (1996). Goal 4: Developing classroom note-taking skills. In Developing self-regulated learners: Beyond achievement to self-efficacy (pp. 69-92, Chapter viii, 147 Pages). Washington: American Psychological Association, American Psychological Association, Washington, DC.</p><br>
+
+                </div>
+            </div>
+             <div class="col-md-6 ">
+                 <form action="/Task/" id="carform">
+                     <div style="margin:30px">
+                            <ul class="Radio">
+                                <li >Learning to self-monitoring might not be able to:</li>
+                                <li>
+                                    <input id="safe1" name="1" type="radio" value="A" /><label for="safe1">A.Identify the inadequacy of current learning strategy</label>
+                                </li>
+                                <li>
+                                    <input id="safe2" name="1" type="radio" value="B" /><label for="safe2">B. Be better at reflective thinking</label>
+                                </li>
+                                <li>
+                                    <input id="safe3" name="1" type="radio" value="C" /><label for="safe3">C.Improve academic grades in few days</label>
+                                </li>
+                                <li>
+                                    <input id="safe4" name="1" type="radio" value="D"/><label for="safe4">D. Discriminate between effective and ineffective performance</label>
+                                </li>
+                            </ul>
+                    </div>
+                     <div style="margin:30px">
+                            <ul class="Radio">
+                                <li >While you’re doing a reading assignment, what can you do to self-monitor your reading process:</li>
+                                <li>
+                                    <input id="safe5" name="2" type="radio" value="A"/><label for="safe5">A.Record time spent </label>
+                                </li>
+                                <li>
+                                    <input id="safe6" name="2" type="radio" value="B"/><label for="safe6">B.Record number of pages read</label>
+                                </li>
+                                <li>
+                                    <input id="safe7" name="2" type="radio" value="C"/><label for="safe7">C.Reflect on your level of comprehension achieved</label>
+                                </li>
+                                <li>
+                                    <input id="safe8" name="2" type="radio" value="D"/><label for="safe8">D.All of the above</label>
+                                </li>
+                            </ul>
+                    </div>
+                     <div style="margin:30px">
+                            <ul class="Radio">
+                                <li >Which of the following actions are helpful to enhance your self-monitoring skills: </li>
+                                <li>
+                                    <input id="safe9" name="3" type="radio" value="A"/><label for="safe9">A.Record the learning process only when instructors require to do so </label>
+                                </li>
+                                <li>
+                                    <input id="safe10" name="3" type="radio" value="B"/><label for="safe10">B.Decide how to evaluate and react to the information gather through self-monitoring</label>
+                                </li>
+                                <li>
+                                    <input id="safe11" name="3" type="radio" value="C"/><label for="safe11">C.Find no means for monitoring the behavior</label>
+                                </li>
+                                <li>
+                                    <input id="safe12" name="3" type="radio" value="D"/><label for="safe12">D. Always rely on personal uninformed estimates of progress</label>
+                                </li>
+                            </ul>
+                    </div>
+                     <div style="margin:30px">
+                            <ul class="Radio">
+                                <li >The self-regulatory approach assumes neither that there is a single strategy that will work for all students nor that a single implementation effort will work for any student. </li>
+                                <li>
+                                    <input id="safe13" name="4" type="radio" value="True"/><label for="safe13">True</label>
+                                </li>
+                                <li>
+                                    <input id="safe14" name="4" type="radio" value="False"/><label for="safe14">False</label>
+                                </li>
+                            </ul>
+                    </div>
+                     <div style="margin:30px">
+                            <ul class="Radio">
+                                <li >Which strategy might not be helpful to improve your text comprehension? </li>
+                                <li>
+                                    <input id="safe15" name="5" type="radio" value="A"/><label for="safe15">A. Anticipate what the author will say or conclude next before reading a text passage </label>
+                                </li>
+                                <li>
+                                    <input id="safe16" name="5" type="radio" value="B"/><label for="safe16">B. Read faster or skip the part when the meaning of a text is unclear to you</label>
+                                </li>
+                                <li>
+                                    <input id="safe17" name="5" type="radio" value="C"/><label for="safe17">C. Analyze a paragraph and identify the main ideas</label>
+                                </li>
+                                <li>
+                                    <input id="safe18" name="5" type="radio" value="D"/><label for="safe18">D. Relate ideas in text to your prior knowledge</label>
+                                </li>
+                            </ul>
+                    </div>
+                     <div style="margin:30px">
+                            <ul class="Radio">
+                                <li >What can you do to summarize a text during reading? </li>
+                                <li>
+                                    <input id="safe19" name="6" type="radio" value="A"/><label for="safe19">A. Eliminate trivial or redundant information</label>
+                                </li>
+                                <li>
+                                    <input id="safe20" name="6" type="radio" value="B"/><label for="safe20">B. Invent a topic sentence</label>
+                                </li>
+                                <li>
+                                    <input id="safe21" name="6" type="radio" value="C"/><label for="safe21">C.Substitute superordinate terms for lists of items</label>
+                                </li>
+                                <li>
+                                    <input id="safe22" name="6" type="radio" value="D"/><label for="safe22">D. All of the above</label>
+                                </li>
+                            </ul>
+                    </div>
+                     <div style="margin:30px">
+                            <ul class="Radio">
+                                <li >Which of the following strategy cannot be considered as elaboration? </li>
+                                <li>
+                                    <input id="safe23" name="7" type="radio" value="A"/><label for="safe23">A. Paraphrase online materials to be learned</label>
+                                </li>
+                                <li>
+                                    <input id="safe24" name="7" type="radio" value="B"/><label for="safe24">B. Explain the ideas to another individual</label>
+                                </li>
+                                <li>
+                                    <input id="safe25" name="7" type="radio" value="C"/><label for="safe25">C. Take notes of summary statements during reading</label>
+                                </li>
+                                <li>
+                                    <input id="safe26" name="7" type="radio" value="D"/><label for="safe26">D. Keep track of the learning process</label>
+                                </li>
+                            </ul>
+                    </div>
+                     <div style="margin:30px">
+                            <ul class="Radio">
+                                <li >To take effective notes, you should not</li>
+                                <li>
+                                    <input id="safe27" name="8" type="radio" value="A"/><label for="safe27">A. Be selective about what to include in your notes</label>
+                                </li>
+                                <li>
+                                    <input id="safe28" name="8" type="radio" value="B"/><label for="safe28">B. Listen for summary statementsl</label>
+                                </li>
+                                <li>
+                                    <input id="safe29" name="8" type="radio" value="C"/><label for="safe29">C. Try to write everything down</label>
+                                </li>
+                                <li>
+                                    <input id="safe30" name="8" type="radio" value="D"/><label for="safe30">D. Be aware of the signal words</label>
+                                </li>
+                            </ul>
+                    </div>
+                     <div style="margin:30px">
+                            <ul class="Radio">
+                                <li >Which of the following statement is true?</li>
+                                <li>
+                                    <input id="safe31" name="9" type="radio" value="A"/><label for="safe31">A. The note page should be divided vertically with one column for recording and another for revising</label>
+                                </li>
+                                <li>
+                                    <input id="safe32" name="9" type="radio" value="B"/><label for="safe32">B. Graphics can be used to represent abstract information visually</label>
+                                </li>
+                                <li>
+                                    <input id="safe33" name="9" type="radio" value="C"/><label for="safe33">C. The type of visual structure must be chosen on the basis of the learning material</label>
+                                </li>
+                                <li>
+                                    <input id="safe34" name="9" type="radio" value="D"/><label for="safe34">D. All of the above</label>
+                                </li>
+                            </ul>
+                    </div>
+                    <input type="submit" class="btn btn-sm btn-primary" style="width:180px; margin: 60px;margin-left: 90px;">
+                </form>
+                 <div style="margin-left:30% " id="answer">
+
+                 </div>
+             </div>
+          <!-- /#page-wrapper -->
+         </div>
+    </div>
+</div>
+<div class="copy">
+     <p>Copyright &copy; 2022</p>
+</div>
+
+    <!-- /#wrapper -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+<script>
+    function GetQueryValue(queryName) {
+        var query = decodeURI(window.location.search.substring(1));
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == queryName) { return pair[1]; }
+        }
+        return null;
+    }
+    function onload() {
+        var ans = GetQueryValue("1")
+        console.log(ans)
+        if (ans != undefined){
+            let UL = document.getElementById('answer');
+            var p = document.createElement('p');
+                // 放入数据(data)
+                // 这里使用ES6字符串模板特性来做
+            p.innerHTML = `
+            The Right answer is CDB ABD DCD
+                `
+                // 放入(ul)
+            UL.appendChild(p);
+        }
+    }
+    window.onload = onload();
+</script>
+</body>
+</html>

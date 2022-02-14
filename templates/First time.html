@@ -1,0 +1,703 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>First time Quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+ <!-- Bootstrap Core CSS -->
+<link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="/static/css/style.css" rel='stylesheet' type='text/css' />
+<link href="/static/css/font-awesome.css" rel="stylesheet">
+<!-- jQuery -->
+<script src="/static/js/jquery.min.js"></script>
+<!-- star -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css"> -->
+    <link href="/static/css/star-rating.css" rel="stylesheet">
+<script src="/static/js/star-rating.min.js"></script>
+</head>
+<body>
+<!-- //star -->
+
+     <!-- Navigation -->
+       <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; min-height: 70px;">
+            <div class="navbar-header" style="margin-top:7px">
+                <a class="navbar-brand">HKUSRL MySR First time Quiz</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-nav navbar-right">
+            	<span class="navbar-brand"  style="margin-top:7px">Welcome</span>
+                {% if request.session.is_login %}
+
+            	<span class="navbar-brand"  style="margin-top:7px">{{ request.session.user_name }}</span>
+                {% else %}
+                <h1>You are not login</h1>
+                {% endif %}
+            	<a class="navbar-brand btn btn-success btn-warng1"  style="margin-top:10px; height: 45px;" href="/logout/">Exit</a>
+
+			</ul>
+            <!-- /.navbar-static-side -->
+        </nav>
+<div style="margin:30px">
+    <div class="content_bottom">
+     <div class="col-md-12 span_3">
+     	<div class="col-md-8" >
+     		<div class="col-md-12" style="margin-top: 30px;margin-bottom: 30px;">
+	     		<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 1</h4>
+				    1. I set standards for my assignments in online courses.
+
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 2</h4>
+				    2. I set short-term (daily or weekly) goals as well as long-term goals (monthly or for the semester).
+
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 3</h4>
+				    3. I keep a high standard for my learning in my online courses.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 4</h4>4. I set goals to help me manage studying time for my online courses.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 5</h4>5. I don't compromise the quality of my work because it is online.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 6</h4>6. I choose the location where I study to avoid too much distraction.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 7</h4>7. I find a comfortable place to study.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 8</h4>8. I know where I can study most efficiently for online courses.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 9</h4>9. I choose a time with few distractions for studying for my online courses.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 10</h4>10. I try to take more thorough notes for my online courses because notesare even more important for learning online than in a regular classroom.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 11</h4>11. I read aloud instructional materials posted online to fight against distractions.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 12</h4>12. I prepare my questions before joining in the chat room and discussion
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 13</h4>13. I work extra problems in my online courses in addition to the assigned ones to master the course content.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 14</h4>14. I allocate extra studying time for my online courses because I know it is time-demanding.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 15</h4>15. I try to schedule the same time everyday or every week to study for my online courses, and I observe the schedule.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 16</h4>16. Although we don't have to attend daily classes, I still try to distribute my studying time evenly across days.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 17</h4>17. I find someone who is knowledgeable in course content so that I can consult with him or her when I need help.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 18</h4>18. I share my problems with my classmates online so we know what we are struggling with and how to solve our problems.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 19</h4>19. If needed, I try to meet my classmates face-to-face.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 20</h4>20. I am persistent in getting help from the instructor through e-mail.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 21</h4>21. I summarize my learning in online courses to examine my understanding of what I have learned.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 22</h4>22. I ask myself a lot of questions about the course material when studying for an online course.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 23</h4>23. I communicate with my classmates to find out how I am doing in my online classes.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Question 24</h4>24. I communicate with my classmates to find out what I am learning that is different from what they are learning.
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				
+			</div>
+     	</div>
+     	<div class="col-md-4" >
+     		<div class="col-md-12" style="margin-top: 30px;margin-bottom: 30px;">
+     			
+	     		<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 1</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="1"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 2</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="2" class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 3</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="3"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 4</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="4"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 5</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="5"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 6</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="6"   class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 7</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="7"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 8</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="8"   class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 9</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="9"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 10</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="10"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 11</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="11"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 12</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="12"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 13</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="13"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 14</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="14"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 15</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="15"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 16</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="16"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 17</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="17"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 18</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="18"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 19</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="19"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 20</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="20"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 21</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="21"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 22</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="22"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 23</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="23"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="media" style="height:50px">
+				  <div class="media-body">
+				    <h4 class="media-heading">Your answer 24</h4>
+				        <!-- 星星打分select插件 -->
+				        <select required name="24"  class="star-rating" form="carform">
+					            <option value="">Select a rating</option>
+					            <option value="5">Excellent</option>
+					            <option value="4">Very Good</option>
+					            <option value="3">Average</option>
+					            <option value="2">Poor</option>
+					            <option value="1">Terrible</option>
+					        </select>
+					   
+					    <script src="/static/js/star-rating.min.js"></script>
+					    <script>
+					        var starRatingControls = new StarRating('.star-rating');
+					    </script>
+				  </div>
+				  <div class="clearfix"> </div>
+				</div>
+				<div class="col-md-12" style="position: relative;">
+		     		<form action="/ft/" id="carform">
+						<input type="submit" class="btn btn-sm btn-primary" style="width:180px; margin: 30px;">
+					</form>
+				</div>
+			</div>
+     	</div>
+     	
+
+      <!-- /#page-wrapper -->
+</div>
+<div class="copy">
+     <p>Copyright &copy; 2022</p>
+</div>
+
+    <!-- /#wrapper -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>
