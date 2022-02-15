@@ -74,24 +74,28 @@ def new(req):
     if not req.session.get('is_login', None):
         return redirect("/login/")
     sid = req.session.get('user_sid', None)
-    print(sid)
-    user = models.User.objects.get(sid=sid)
-    user_srllist = user.srlid.replace('\'','')
-    # print(user_srllist[-1])
-    new = models.Saveoutput.objects.create()
-    nuewsrlid= int(user_srllist[-1]) + 1
-    new.srlid = nuewsrlid  # 新建srlid
-    new.output = '{"meta":{"author":"ZhangLong","version":"0.2"},"format":"node_tree","data":{"id":"root","topic":"mysrl_name11","expanded":true}}'
-    new.sid = sid
-    new.name = req.session.get('user_name', None)
-    new.save()
-    user_srlidlistdata = '0'
-    for i in range(nuewsrlid):
-        user_srlidlistdata = user_srlidlistdata +',' + str(i+1)
-    user.srlid = user_srlidlistdata
-    # print(user.srlid)
-    user.save()
-    return redirect('/jsmind/'+'?id='+str(nuewsrlid))
+    if req.method == 'POST':
+        user = models.User.objects.get(sid=sid)
+        user_srllist = user.srlid.replace('\'', '')
+        # print(user_srllist[-1])
+        new = models.Saveoutput.objects.create()
+        nuewsrlid = int(user_srllist[-1]) + 1
+        new.srlid = nuewsrlid  # 新建srlid
+        new.output = '{"meta":{"author":"ZhangLong","version":"0.2"},"format":"node_tree","data":{"id":"root","topic":"mysrl_name11","expanded":true}}'
+        new.sid = sid
+        new.name = req.session.get('user_name', None)
+        new.plan = '1:' + req.POST.get('1') + ',2:' + req.POST.get('2') + ',3:' + req.POST.get('3') + ',4:' + req.POST.get('4')
+        new.save()
+        user_srlidlistdata = '0'
+        for i in range(nuewsrlid):
+            user_srlidlistdata = user_srlidlistdata + ',' + str(i + 1)
+        user.srlid = user_srlidlistdata
+        # print(user.srlid)
+        user.save()
+        return HttpResponse({'success'})
+    else:
+        return HttpResponse('use POST request method please.')
+
 def jsmind(request):
     if not request.session.get('is_login', None):
         return redirect("/login/")

@@ -32,5 +32,6 @@ class Saveoutput(models.Model):
     srlid = models.CharField(max_length=64)
     output = models.CharField(max_length=500)
     name = models.CharField(max_length=500)
+    plan = models.CharField(max_length=500)
     save_time = models.DateTimeField(auto_now=True)
     creat_time = models.DateTimeField(auto_now_add=True)

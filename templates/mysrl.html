@@ -31,7 +31,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 \t\t          <td>${data[i].name}</td>
 \t\t          <td>${data[i].creat_time.substring(0,10)}</td>
 \t\t          <td>${data[i].save_time.substring(0,10)}</td>
-\t\t          <td>--</td>
 \t\t          <th><a href="../jsmind/?id=${data[i].srlid}" style="color:green">Edit</a></th>
 \t\t        </tr>
                 `
@@ -89,9 +88,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		          <th>Topic</th>
 		          <th>Create time</th>
 		          <th>Save Time</th>
-		          <th>Progress</th>
 		          <th>Edit</th>
-                    <th><a class="btn btn-primary" href="../new/"> NEW </a></th>
+                    <th><a class="btn btn-primary" href="" data-toggle="modal" data-target="#myModal"> NEW </a></th>
 		        </tr>
 		      </thead>
 		      <tbody id = 'mysrllist'>
@@ -103,8 +101,72 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="col_2">
         	    <div id="container" style="width: 100%; min-height: 400px"></div>
     <script type="text/javascript" src="/static/css/echarts.min.js"></script>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					New SRL Project
+				</h4>
+			</div>
+
+                <div class="modal-body">
+                    <form method="GET" id="form1">
+                        {% csrf_token %}
+                        <p>Please indicate what do you want to learn for this week?</p>
+
+                        <input name="1" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="Set the Final goal of wekk for learning">
+
+                        <p>Input the activities that can help you achieve your goal(s)
+                            Such as,</p>
+                        <input name="2" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="You can input mul-activities">
+
+                        <p>How much work do you plan to accomplish?</p>
+                        <input name="3" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="Please input your plan-work">
+
+                        <p>How long do you expect to work on these task?</p>
+                        <input name="4" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="Please input your plan-time">
+
+                        <div class="modal-footer" style="margin-top: 40px">
+                            <button type="button" class="btn btn-default"
+                                    data-dismiss="modal">Close
+                            </button>
+                            <input type="button" class="btn btn-primary" value="Submit" onclick="newsrl()">
+
+                        </div>
+                    </form>
+                </div>
+
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
     <script type="text/javascript">
+    function newsrl(){
+        $.ajax({
+        url: "/new/",
+        type: "POST",        //请求类型
+        //contentType: "application/json; charset=utf-8",
+        data: $('#form1').serialize(),
+        dataType: "json",
+        success: function () {
+            //当请求执行完成后，自动调用
+            //arg, 服务器返回的数据
+            prompt_info('Saved successfully');
+            window.location.replace('/mysrl/')
+        },
+        error: function () {
+            //当请求错误之后，自动调用
+            window.location.replace('/mysrl/')
+            {#prompt_info('Save failed');#}
+        }
+    });
+        //prompt_info('Saved successfully');
+    }
         var dom = document.getElementById("container");
         var myChart = echarts.init(dom);
         var app = {};
