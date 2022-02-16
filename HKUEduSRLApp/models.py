@@ -4,17 +4,17 @@ from django import forms
 # Create your models here.
 class User(models.Model):
     ''' User info'''
-    name = models.CharField(max_length=128)
-    uid = models.CharField(max_length=32,unique=True)
+    name = models.CharField(max_length=128,default='')
+    key = models.CharField(max_length=32,default='S4od99')
     sid = models.CharField(max_length=64,unique=True)
-    srlid = models.CharField(max_length=128)
-    ft_quiz_answer = models.CharField(max_length=128)
-    goal_quiz_answer = models.CharField(max_length=128)
-    time_quiz_answer = models.CharField(max_length=128)
-    help_quiz_answer = models.CharField(max_length=128)
-    task_quiz_answer = models.CharField(max_length=128)
-    environment_quiz_answer = models.CharField(max_length=128)
-    evaluation_quiz_answer = models.CharField(max_length=128)
+    srlid = models.CharField(max_length=128,default='[0]')
+    ft_quiz_answer = models.CharField(max_length=128,default='null')
+    goal_quiz_answer = models.CharField(max_length=128,default='null')
+    time_quiz_answer = models.CharField(max_length=128,default='null')
+    help_quiz_answer = models.CharField(max_length=128,default='null')
+    task_quiz_answer = models.CharField(max_length=128,default='null')
+    environment_quiz_answer = models.CharField(max_length=128,default='null')
+    evaluation_quiz_answer = models.CharField(max_length=128,default='null')
 
 
     def __str__(self):

@@ -9,11 +9,11 @@ from django import forms
 from django.db.models import Max
 import datetime
 import time
-
+# 注意！！！sid 是邮箱，uid是Key Code，我懒得改了
 class UserForm(forms.Form):
-    sid = forms.CharField(label="sid", max_length=64,widget=forms.TextInput(attrs={'placeholder': 'please input sid'}))
-    username = forms.CharField(label="username", max_length=128,widget=forms.TextInput(attrs={'placeholder': 'please input name'}))
-    uid = forms.CharField(label="uid", max_length=32,widget=forms.TextInput(attrs={'placeholder': 'please input uid'}))
+    sid = forms.CharField(label="Key Code", max_length=64,widget=forms.TextInput(attrs={'placeholder': 'uid@connect.hku.hk'}))
+    # username = forms.CharField(label="username", max_length=128,widget=forms.TextInput(attrs={'placeholder': 'please input name'}))
+    uid = forms.CharField(label="uid", max_length=32,widget=forms.TextInput(attrs={'placeholder': 'Key Code'}))
 
 
 def index(request):
@@ -28,24 +28,24 @@ def login(request):
         message = "Please check first！"
         if login_form.is_valid():  # 确保用户名和密码都不为空
             sid = login_form.cleaned_data['sid']
-            username = login_form.cleaned_data['username']
+            # username = login_form.cleaned_data['username']
             uid = login_form.cleaned_data['uid']
             try:
                 user = models.User.objects.get(sid=sid)
-                if user.name == username:
-                    if user.uid == uid:
+                # if user.name == username:
+                if user.key == uid:
                         request.session['is_login'] = True
                         request.session['user_sid'] = user.sid
                         request.session['user_name'] = user.name
                         request.session['user_uid'] = user.uid
-                        if user.ft_quiz_answer=='':
+                        if user.ft_quiz_answer=='null':
                             return redirect('/ft/')
                         else :
                             return redirect('/mysrl/')
-                    else:
-                        message = "Wrong UID"
                 else:
-                    message = "Wrong name"
+                        message = "Wrong UID"
+                # else:
+                #     message = "Wrong name"
             except:
                 message = "Unauthorized School ID No."
         return redirect("/ft/")
@@ -59,7 +59,7 @@ def ft(req):
     # print(user)
     print(req.GET.get('1'))
     if req.GET.get('1') is not None:
-        if user.ft_quiz_answer == '':
+        if user.ft_quiz_answer == 'null':
             ft_ans_list = []
             for i in range(24):
                 ft_ans_list.append(req.GET.get(str(i + 1)))
