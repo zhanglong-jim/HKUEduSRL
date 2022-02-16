@@ -70,32 +70,54 @@ def ft(req):
         else:
             return redirect('/mysrl/')
     return render(req,'First time.html',locals())
+# def new(req):
+#     if not req.session.get('is_login', None):
+#         return redirect("/login/")
+#     sid = req.session.get('user_sid', None)
+#     if req.method == 'POST':
+#         user = models.User.objects.get(sid=sid)
+#         user_srllist = user.srlid.replace('\'', '')
+#         # print(user_srllist[-1])
+#         new = models.Saveoutput.objects.create()
+#         nuewsrlid = int(user_srllist[-1]) + 1
+#         new.srlid = nuewsrlid  # 新建srlid
+#         new.output = '{"meta":{"author":"ZhangLong","version":"0.2"},"format":"node_tree","data":{"id":"root","topic":"mysrl_name11","expanded":true}}'
+#         new.sid = sid
+#         new.name = req.session.get('user_name', None)
+#         new.plan = '1:' + req.POST.get('1') + ',2:' + req.POST.get('2') + ',3:' + req.POST.get('3') + ',4:' + req.POST.get('4')
+#         new.save()
+#         user_srlidlistdata = '0'
+#         for i in range(nuewsrlid):
+#             user_srlidlistdata = user_srlidlistdata + ',' + str(i + 1)
+#         user.srlid = user_srlidlistdata
+#         # print(user.srlid)
+#         user.save()
+#         return HttpResponse({'success'})
+#     else:
+#         return HttpResponse('use POST request method please.')
 def new(req):
     if not req.session.get('is_login', None):
         return redirect("/login/")
     sid = req.session.get('user_sid', None)
-    if req.method == 'POST':
-        user = models.User.objects.get(sid=sid)
-        user_srllist = user.srlid.replace('\'', '')
-        # print(user_srllist[-1])
-        new = models.Saveoutput.objects.create()
-        nuewsrlid = int(user_srllist[-1]) + 1
-        new.srlid = nuewsrlid  # 新建srlid
-        new.output = '{"meta":{"author":"ZhangLong","version":"0.2"},"format":"node_tree","data":{"id":"root","topic":"mysrl_name11","expanded":true}}'
-        new.sid = sid
-        new.name = req.session.get('user_name', None)
-        new.plan = '1:' + req.POST.get('1') + ',2:' + req.POST.get('2') + ',3:' + req.POST.get('3') + ',4:' + req.POST.get('4')
-        new.save()
-        user_srlidlistdata = '0'
-        for i in range(nuewsrlid):
-            user_srlidlistdata = user_srlidlistdata + ',' + str(i + 1)
-        user.srlid = user_srlidlistdata
+    user = models.User.objects.get(sid=sid)
+    user_srllist = user.srlid.replace('\'', '').strip("[]").split(',')
+    print(max(list(map(int, user_srllist))))
+    new = models.Saveoutput.objects.create()
+    nue_srlid = max(list(map(int, user_srllist))) + 1
+    new_red = str(nue_srlid)
+    user_srllist_update = str(list(range(nue_srlid +1)))
+    new.srlid = new_red  # 新建srlid
+    new.output = '{"meta":{"author":"ZhangLong","version":"0.2"},"format":"node_tree","data":{"id":"root","topic":"Enter topic","expanded":true,"children":[{"id":"f00efa19575318ce","topic":"Video activitiy","expanded":true,"direction":"right","children":[{"id":"f00f68eded68c10a","topic":"Plan1","expanded":true,"children":[{"id":"f00fab5818bbbc8e","topic":"How  much work","expanded":true},{"id":"f00fb079f2cdec3e","topic":"How much  time","expanded":true}]},{"id":"f00fa14f2a589c5d","topic":"Plan2","expanded":true,"children":[{"id":"f00fb642a735dc3a","topic":"How  much work","expanded":true},{"id":"f00fb9ea07d9a464","topic":"How much  time","expanded":true}]},{"id":"f00fa2d2da8e93d6","topic":"...","expanded":true}]},{"id":"f00f240b80ca3002","topic":"Reading activitiy","expanded":true,"direction":"right"},{"id":"f00f29db0bb4fe98","topic":"Discussion forum","expanded":true,"direction":"right"},{"id":"f00f2f4012e8ea93","topic":"Quiz","expanded":true,"direction":"right"},{"id":"f00f32fb3c026caa","topic":"Reflection paper","expanded":true,"direction":"right"},{"id":"f00f37e824233a95","topic":"Group project","expanded":true,"direction":"right"},{"id":"f00fa489154524ab","topic":"...","expanded":true,"direction":"right"}]}}'
+    new.sid = sid
+    new.name = req.session.get('user_name', None)
+    new.save()
+    # user_srlidlistdata = '0'
+    # for i in range(nuewsrlid):
+    #         user_srlidlistdata = user_srlidlistdata + ',' + str(i + 1)
+    user.srlid = user_srllist_update
         # print(user.srlid)
-        user.save()
-        return HttpResponse({'success'})
-    else:
-        return HttpResponse('use POST request method please.')
-
+    user.save()
+    return redirect('/jsmind/'+'?id='+new_red)
 def jsmind(request):
     if not request.session.get('is_login', None):
         return redirect("/login/")
@@ -118,15 +140,15 @@ def mysrl(request):
     sid = request.session.get('user_sid', None)
     # print(sid)
     user = models.User.objects.get(sid=sid)
-    user_srllist = user.srlid.split(',')
-    # print(user_srllist)
+    user_srllist = list(map(int,user.srlid.replace('\'', '').strip("[]").split(',')))
+    print(max(list(map(int, user_srllist))))
     datalist = []
     for i in user_srllist:
-        if i == '0':
+        if i == '0' or i ==0:
             continue
         else:
             info = models.Saveoutput.objects.filter(
-                sid=sid, srlid= i
+                sid=sid, srlid= str(i)
             ).last()
             temporary = {"srlid":info.srlid,"name": str(info.name),"creat_time":str(info.creat_time),"save_time":str(info.save_time)}
             datalist.append(temporary)

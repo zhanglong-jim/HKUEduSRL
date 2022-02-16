@@ -89,7 +89,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		          <th>Create time</th>
 		          <th>Save Time</th>
 		          <th>Edit</th>
-                    <th><a class="btn btn-primary" href="" data-toggle="modal" data-target="#myModal"> NEW </a></th>
+{#                    <th><a class="btn btn-primary" href="" data-toggle="modal" data-target="#myModal"> NEW </a></th>#}
+                    <th><a class="btn btn-primary" href="/new/"> NEW </a></th>
 		        </tr>
 		      </thead>
 		      <tbody id = 'mysrllist'>
@@ -101,49 +102,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="col_2">
         	    <div id="container" style="width: 100%; min-height: 400px"></div>
     <script type="text/javascript" src="/static/css/echarts.min.js"></script>
-<!-- 模态框（Modal） -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×
-				</button>
-				<h4 class="modal-title" id="myModalLabel">
-					New SRL Project
-				</h4>
-			</div>
-
-                <div class="modal-body">
-                    <form method="GET" id="form1">
-                        {% csrf_token %}
-                        <p>Please indicate what do you want to learn for this week?</p>
-
-                        <input name="1" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="Set the Final goal of wekk for learning">
-
-                        <p>Input the activities that can help you achieve your goal(s)
-                            Such as,</p>
-                        <input name="2" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="You can input mul-activities">
-
-                        <p>How much work do you plan to accomplish?</p>
-                        <input name="3" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="Please input your plan-work">
-
-                        <p>How long do you expect to work on these task?</p>
-                        <input name="4" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="Please input your plan-time">
-
-                        <div class="modal-footer" style="margin-top: 40px">
-                            <button type="button" class="btn btn-default"
-                                    data-dismiss="modal">Close
-                            </button>
-                            <input type="button" class="btn btn-primary" value="Submit" onclick="newsrl()">
-
-                        </div>
-                    </form>
-                </div>
-
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+{#<!-- 模态框（Modal） -->#}
+{#<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">#}
+{#	<div class="modal-dialog">#}
+{#		<div class="modal-content">#}
+{#			<div class="modal-header">#}
+{#				<button type="button" class="close" data-dismiss="modal"#}
+{#						aria-hidden="true">×#}
+{#				</button>#}
+{#				<h4 class="modal-title" id="myModalLabel">#}
+{#					New SRL Project#}
+{#				</h4>#}
+{#			</div>#}
+{##}
+{#                <div class="modal-body">#}
+{#                    <form method="GET" id="form1">#}
+{#                        {% csrf_token %}#}
+{#                        <p>Please indicate what do you want to learn for this week?</p>#}
+{##}
+{#                        <input name="1" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="Set the Final goal of wekk for learning">#}
+{##}
+{#                        <p>Input the activities that can help you achieve your goal(s)#}
+{#                            Such as,</p>#}
+{#                        <input name="2" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="You can input mul-activities">#}
+{##}
+{#                        <p>How much work do you plan to accomplish?</p>#}
+{#                        <input name="3" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="Please input your plan-work">#}
+{##}
+{#                        <p>How long do you expect to work on these task?</p>#}
+{#                        <input name="4" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="Please input your plan-time">#}
+{##}
+{#                        <div class="modal-footer" style="margin-top: 40px">#}
+{#                            <button type="button" class="btn btn-default"#}
+{#                                    data-dismiss="modal">Close#}
+{#                            </button>#}
+{#                            <input type="button" class="btn btn-primary" value="Submit" onclick="newsrl()">#}
+{##}
+{#                        </div>#}
+{#                    </form>#}
+{#                </div>#}
+{##}
+{#		</div><!-- /.modal-content -->#}
+{#	</div><!-- /.modal-dialog -->#}
+{#</div><!-- /.modal -->#}
 
     <script type="text/javascript">
     function newsrl(){

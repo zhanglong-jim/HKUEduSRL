@@ -292,7 +292,7 @@
         var stime = Date.parse(new Date());
         var srlid = GetQueryValue("id")
         var senddata = {"data": jsMind.util.json.json2string(mind_data) , "sid" : "{{ request.session.user_sid }}" , "stime":stime, "srlid":srlid};
-        prompt_info(senddata["srlid"]);
+        prompt_info('Savrd SRL No.'+senddata["srlid"]);
         $.ajax({
         url: "/add/",
         type: "POST",        //请求类型
