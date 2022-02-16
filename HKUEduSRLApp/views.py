@@ -11,14 +11,14 @@ import datetime
 import time
 # 注意！！！sid 是邮箱，uid是Key Code，我懒得改了
 class UserForm(forms.Form):
-    sid = forms.CharField(label="Key Code", max_length=64,widget=forms.TextInput(attrs={'placeholder': 'uid@connect.hku.hk'}))
+    sid = forms.CharField(label="Key Code", max_length=64,widget=forms.TextInput(attrs={'placeholder': 'HKU Email'}))
     # username = forms.CharField(label="username", max_length=128,widget=forms.TextInput(attrs={'placeholder': 'please input name'}))
     uid = forms.CharField(label="uid", max_length=32,widget=forms.TextInput(attrs={'placeholder': 'Key Code'}))
 
 
 def index(request):
     pass
-    return render(request,'index.html')
+    return render(request,'/login/')
 
 def login(request):
     if request.session.get('is_login', None):
@@ -32,23 +32,23 @@ def login(request):
             uid = login_form.cleaned_data['uid']
             try:
                 user = models.User.objects.get(sid=sid)
+                print('sid:',sid)
                 # if user.name == username:
                 if user.key == uid:
-                        request.session['is_login'] = True
-                        request.session['user_sid'] = user.sid
-                        request.session['user_name'] = user.name
-                        request.session['user_uid'] = user.uid
-                        if user.ft_quiz_answer=='null':
-                            return redirect('/ft/')
-                        else :
-                            return redirect('/mysrl/')
+                    print('user:',user.sid,user.name,user.key)
+                    request.session['is_login'] = True
+                    request.session['user_sid'] = user.sid
+                    request.session['user_name'] = user.name
+                    if user.ft_quiz_answer == 'null':
+                        return redirect("/ft/")
+                    else:
+                        return redirect("/mysrl/")
                 else:
-                        message = "Wrong UID"
+                    message = "Wrong"
                 # else:
                 #     message = "Wrong name"
             except:
-                message = "Unauthorized School ID No."
-        return redirect("/ft/")
+                message = "Login Failed"
     login_form = UserForm()
     return render(request,'login.html',locals())
 def ft(req):
@@ -56,7 +56,7 @@ def ft(req):
         return redirect("/login/")
     sid = req.session.get('user_sid', None)
     user = models.User.objects.get(sid=sid)
-    # print(user)
+    print(sid)
     print(req.GET.get('1'))
     if req.GET.get('1') is not None:
         if user.ft_quiz_answer == 'null':
@@ -153,6 +153,9 @@ def mysrl(request):
             temporary = {"srlid":info.srlid,"name": str(info.name),"creat_time":str(info.creat_time),"save_time":str(info.save_time)}
             datalist.append(temporary)
     # print(listjson)
+    print(user.ft_quiz_answer)
+    if user.ft_quiz_answer == 'null':
+        return redirect('/ft/')
     ans = user.ft_quiz_answer.replace('\'','')
     ans_r = ans.replace('[','')
     ans_r_p = ans_r.replace(']','')
