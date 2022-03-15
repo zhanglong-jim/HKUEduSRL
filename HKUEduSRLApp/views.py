@@ -150,7 +150,10 @@ def mysrl(request):
             info = models.Saveoutput.objects.filter(
                 sid=sid, srlid= str(i)
             ).last()
-            temporary = {"srlid":info.srlid,"name": str(info.name),"creat_time":str(info.creat_time),"save_time":str(info.save_time)}
+            infofirst = models.Saveoutput.objects.filter(
+                sid=sid, srlid=str(i)
+            ).first()
+            temporary = {"srlid":info.srlid,"name": str(info.name),"creat_time":str(infofirst.creat_time),"save_time":str(info.save_time)}
             datalist.append(temporary)
     # print(listjson)
     print(user.ft_quiz_answer)

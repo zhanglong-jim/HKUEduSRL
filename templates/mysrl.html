@@ -102,50 +102,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="col_2">
         	    <div id="container" style="width: 100%; min-height: 400px"></div>
     <script type="text/javascript" src="/static/css/echarts.min.js"></script>
-{#<!-- 模态框（Modal） -->#}
-{#<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">#}
-{#	<div class="modal-dialog">#}
-{#		<div class="modal-content">#}
-{#			<div class="modal-header">#}
-{#				<button type="button" class="close" data-dismiss="modal"#}
-{#						aria-hidden="true">×#}
-{#				</button>#}
-{#				<h4 class="modal-title" id="myModalLabel">#}
-{#					New SRL Project#}
-{#				</h4>#}
-{#			</div>#}
-{##}
-{#                <div class="modal-body">#}
-{#                    <form method="GET" id="form1">#}
-{#                        {% csrf_token %}#}
-{#                        <p>Please indicate what do you want to learn for this week?</p>#}
-{##}
-{#                        <input name="1" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="Set the Final goal of wekk for learning">#}
-{##}
-{#                        <p>Input the activities that can help you achieve your goal(s)#}
-{#                            Such as,</p>#}
-{#                        <input name="2" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="You can input mul-activities">#}
-{##}
-{#                        <p>How much work do you plan to accomplish?</p>#}
-{#                        <input name="3" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="Please input your plan-work">#}
-{##}
-{#                        <p>How long do you expect to work on these task?</p>#}
-{#                        <input name="4" required="required" style="margin-top: 20px" class="form-group col-md-12" placeholder="Please input your plan-time">#}
-{##}
-{#                        <div class="modal-footer" style="margin-top: 40px">#}
-{#                            <button type="button" class="btn btn-default"#}
-{#                                    data-dismiss="modal">Close#}
-{#                            </button>#}
-{#                            <input type="button" class="btn btn-primary" value="Submit" onclick="newsrl()">#}
-{##}
-{#                        </div>#}
-{#                    </form>#}
-{#                </div>#}
-{##}
-{#		</div><!-- /.modal-content -->#}
-{#	</div><!-- /.modal-dialog -->#}
-{#</div><!-- /.modal -->#}
-
     <script type="text/javascript">
     function newsrl(){
         $.ajax({
@@ -227,7 +183,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         {{ recomdation }}
                         </h4>
 			</div>
-			<p class="monday">Click <a target="view_frame" href={{ recomdation_url }}>here</a> to learn</p>
+			<p class="monday">Click <a target="view_frame" href={{ recomdation_url }}>here</a> to Quick Link.</p>
+             <div >
+				<div>
+                    <div class="col-md-6" style="background-color: #3d851a; padding-top: 15px;padding-bottom: 15px">
+                        <a href="/Goal/"><p class="date-in">Goal Seting </p></a>
+                    </div>
+                    <div class="col-md-6" style="background-color: #a0e67e; padding-top: 15px;padding-bottom: 15px">
+                        <a href="/Env/"><p class="date-in">Environment </p></a>
+                    </div>
+                    <div class="col-md-6" style="background-color: #a0e67e; padding-top: 15px;padding-bottom: 15px">
+                        <a href="/Task/"><p class="date-in">Task Strategies </p></a>
+                    </div>
+                    <div class="col-md-6" style="background-color: #3d851a; padding-top: 15px;padding-bottom: 15px">
+                        <a href="/Time/"><p class="date-in">Time Management </p></a>
+                    </div>
+                    <div class="col-md-6" style="background-color: #3d851a; padding-top: 15px;padding-bottom: 15px">
+                        <a href="/Help/"><p class="date-in">Help Seeking </p></a>
+                    </div>
+                    <div class="col-md-6" style="background-color: #a0e67e; padding-top: 15px;padding-bottom: 15px">
+                        <a href="/Sel/"><p class="date-in">Self-evaluation </p></a>
+                    </div>
+
+					<div class="clearfix"> </div>
+				</div>
+
+			</div>
 {% endautoescape %}
 		</div>
 		<div class="clearfix"> </div>
@@ -242,6 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- /#wrapper -->
     <!-- Bootstrap Core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>
 {% endblock %}
