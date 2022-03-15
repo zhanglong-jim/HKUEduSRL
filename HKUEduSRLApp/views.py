@@ -134,6 +134,14 @@ def jsmind(request):
     ).last()
     # print(info.output)
     return render(request,'jsmind.html',locals())
+def tolist(a):
+    a1=a.replace('\'','')
+    a2=a1.replace('[','')
+    a3=a2.replace(']','')
+    a4 = a3.replace(' ', '')
+    list = a4.split(',')
+    print(list)
+    return list
 def mysrl(request):
     if not request.session.get('is_login', None):
         return redirect("/login/")
@@ -141,7 +149,7 @@ def mysrl(request):
     # print(sid)
     user = models.User.objects.get(sid=sid)
     user_srllist = list(map(int,user.srlid.replace('\'', '').strip("[]").split(',')))
-    print(max(list(map(int, user_srllist))))
+    # print(max(list(map(int, user_srllist))))
     datalist = []
     for i in user_srllist:
         if i == '0' or i ==0:
@@ -156,7 +164,7 @@ def mysrl(request):
             temporary = {"srlid":info.srlid,"name": str(info.name),"creat_time":str(infofirst.creat_time),"save_time":str(info.save_time)}
             datalist.append(temporary)
     # print(listjson)
-    print(user.ft_quiz_answer)
+    # print(user.ft_quiz_answer)
     if user.ft_quiz_answer == 'null':
         return redirect('/ft/')
     ans = user.ft_quiz_answer.replace('\'','')
@@ -168,12 +176,97 @@ def mysrl(request):
     for i in ans_l:
         ans_show.append(int(i))
     # print(ans_show)
-    Goal = int(sum(ans_show[0:5])/0.25)
+    Goal = int(sum(ans_show[0:5]) / 0.25)
+    # print(Goal)
+    if user.goal_quiz_answer != 'null':
+        anslist = tolist(user.goal_quiz_answer)
+        if anslist[0]=='D':
+            Goal = Goal +10
+            # print(Goal)
+        if anslist[1]=='B':
+            Goal = Goal +10
+            # print(Goal)
+        if anslist[2]=='B':
+            Goal = Goal +10
+            # print(Goal)
+        if Goal >100:
+            Goal = 100
+    # print(Goal)
     Evn = int(sum(ans_show[5:9])/0.20)
+    if user.environment_quiz_answer != 'null':
+        anslist = tolist(user.environment_quiz_answer)
+        if anslist[0]=='D':
+            Evn = Evn +6
+        if anslist[1]=='B':
+            Evn = Evn +6
+        if anslist[2]=='True':
+            Evn = Evn +6
+        if anslist[3]=='False':
+            Evn = Evn +6
+        if anslist[4]=='D':
+            Evn = Evn +6
+        if Evn >100:
+            Evn = 100
     Task = int(sum(ans_show[9:13])/0.20)
+    if user.task_quiz_answer != 'null':
+        anslist = tolist(user.task_quiz_answer)
+        if anslist[0]=='C':
+            Task = Task +3.5
+        if anslist[1]=='D':
+            Task = Task +3.5
+        if anslist[2]=='B':
+            Task = Task +3.5
+        if anslist[3]=='True':
+            Task = Task +3.5
+        if anslist[4]=='B':
+            Task = Task +3.5
+        if anslist[5]=='D':
+            Task = Task +3.5
+        if anslist[6]=='D':
+            Task = Task +3.5
+        if anslist[7]=='C':
+            Task = Task +3.5
+        if anslist[8]=='D':
+            Task = Task +3.5
+        if Task >100:
+            Task = 100
     Time = int(sum(ans_show[13:16])/0.15)
+    if user.time_quiz_answer != 'null':
+        anslist = tolist(user.time_quiz_answer)
+        if anslist[0] == 'D':
+            Time = Time + 10
+        if anslist[1] == 'C':
+            Time = Time + 10
+        if anslist[2] == 'True':
+            Time = Time + 10
+        if Time > 100:
+            Time = 100
     Help = int(sum(ans_show[16:20])/0.20)
+    if user.help_quiz_answer != 'null':
+        anslist = tolist(user.help_quiz_answer)
+        if anslist[0]=='False':
+            Help = Help +6
+        if anslist[1]=='D':
+            Help = Help +6
+        if anslist[2]=='C':
+            Help = Help +6
+        if anslist[3]=='False':
+            Help = Help +6
+        if anslist[4]=='D':
+            Help = Help +6
+        if Help >100:
+            Help = 100
     Sel = int(sum(ans_show[20:24])/0.20)
+    if user.evaluation_quiz_answer != 'null':
+        anslist = tolist(user.evaluation_quiz_answer)
+        if anslist[0]=='False':
+            Sel = Sel +10
+        if anslist[1]=='True':
+            Sel = Sel +10
+        if anslist[2]=='C':
+            Sel = Sel +10
+        if Help >100:
+            Sel = 100
     SRL_strategy = [Goal,Evn,Task,Time,Help,Sel]
     recomdation_s = min(SRL_strategy)
     recomdation_id= SRL_strategy.index(recomdation_s)
