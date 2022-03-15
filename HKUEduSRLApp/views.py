@@ -181,7 +181,7 @@ def mysrl(request):
         recomdation = 'Goal Setting'
         recomdation_url = '/Goal/'
     if recomdation_id == 1:
-        recomdation = 'Enviroment Structuring'
+        recomdation = 'Environment Structuring'
         recomdation_url = '/Env/'
     if recomdation_id == 2:
         recomdation = 'Task Strategies'
@@ -193,7 +193,7 @@ def mysrl(request):
         recomdation = 'Help Seeking'
         recomdation_url = '/Help/'
     if recomdation_id == 5:
-        recomdation = 'Self-evalution'
+        recomdation = 'Self-evaluation'
         recomdation_url = '/Sel/'
     listjson = {"data": datalist,"SRL":SRL_strategy,'recomdation':recomdation,'recomdation_url':recomdation_url}
     return render(request,'mysrl.html',listjson)
