@@ -1,116 +1,125 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>HKUSRL Login</title>
-
-<style>
-body {
-	margin:0;
-	padding:0;
-	font-family:sans-serif;
-	background-image:url('https://vepimg.b8cdn.com/uploads/vjfnew/2213/uploads/vjf/content/misc/1599821519slide2.jpg');
-	background-position: center 0%;
-	background-size:auto;
-	max-height: 1000px;
-}
-.box {
-	width:400px;
-	padding:40px;
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%,-50%);
-	background:#19191900;
-	text-align:center;
-	box-shadow:20px 25px 45px 15px;
-}
-.box h1 {
-	color:white;
-	text-transform:uppercase;
-	font-weight:500;
-}
-.box input[type = "text"],.box input[type = "password"] {
-	/*border:0;
-	*/
-    background:none;
-	display:block;
-	margin:20px auto;
-	text-align:center;
-	border:2px solid #3498db;
-	padding:14px 10px;
-	width:200px;
-	outline:none;
-	color:white;
-	border-radius:24px;
-	transition:0.25s;
-}
-.box input[type = "text"]:focus,.box input[type = "password"]:focus {
-	width:280px;
-	border-color:#2ecc71;
-}
-.box button[type = "submit"] {
-	/* border:0;
-	*/
-    background:none;
-	display:block;
-	margin:20px auto;
-	text-align:center;
-	border:2px solid #2ecc71;
-	padding:14px 40px;
-	outline:none;
-	color:white;
-	border-radius:24px;
-	transition:0.25s;
-	cursor:pointer;
-}
-.box input[type = "submit"]:hover {
-	background:#2ecc71;
-}
-</style>
+    <meta charset="utf-8">
+    <title>HKUSRL Login</title>
+    <style>
+        body {
+            margin:0;
+            padding:0;
+            font-family:sans-serif;
+            background-color: #5d9866;
+            background-image:url('/static/images/background.jpeg');
+            background-size: cover;
+        }
+        .box {
+            width:400px;
+            padding:40px;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            background:#19191900;
+            text-align:center;
+            box-shadow:20px 25px 45px 15px;
+        }
+        .box h1 {
+            color:white;
+            text-transform:uppercase;
+            font-weight:500;
+        }
+        .box input[type = "text"],.box input[type = "password"] {
+            /*border:0;
+            */
+            background:none;
+            display:block;
+            margin:20px auto;
+            text-align:center;
+            border:2px solid #3498db;
+            padding:14px 10px;
+            width:200px;
+            outline:none;
+            color:white;
+            border-radius:24px;
+            transition:0.25s;
+        }
+        .box input[type = "text"]:focus,.box input[type = "password"]:focus {
+            width:280px;
+            border-color:#2ecc71;
+        }
+        .box button[type = "submit"] {
+            /* border:0;
+            */
+            background:none;
+            display:block;
+            margin:20px auto;
+            text-align:center;
+            border:2px solid #2ecc71;
+            padding:14px 40px;
+            outline:none;
+            color:white;
+            border-radius:24px;
+            transition:0.25s;
+            cursor:pointer;
+        }
+        .box input[type = "submit"]:hover {
+            background:#2ecc71;
+        }
+        input::placeholder {
+            color: #CDCDCD;
+        }
+        input:-internal-autofill-previewed, input:-internal-autofill-selected {
+            -webkit-text-fill-color: #FFFFFF !important;
+            transition: background-color 5000s ease-in-out 100s !important;
+        }
+    </style>
 </head>
 {% block content %}
-<body>
-         <form action="/login/" method="post" class="box">
-             {% if message %}
-                 <div class="alert alert-warning">{{ message }}</div>
-             {% endif %}
+    <body>
+    <div class="col-md-12">
+        <form action="/login/" method="post" class="box">
+            {% csrf_token %}
+            {% if message %}
+                <div style="color: #CDCDCD;background-color: rgba(247,134,101,0.29)">{{ message }}</div>
+            {% endif %}
 
-             {% csrf_token %}
+            <h1>Welcome to HKUSOC</h1>
+            <h2 style="color: #efefef">Smart Online Courses System</h2>
 
-             <h1>Welcome to HKUSRL</h1>
+            <div class="form-group">
+                {{ login_form.e_mail}}
+            </div>
 
-             <div class="form-group">
-                      {{ login_form.sid}}
-             </div>
-             <div class="form-group">
-                      {{ login_form.username }}
-             </div>
-             <div class="form-group">
-                      {{ login_form.uid }}
-             </div>
+            <div class="form-group">
+                {{ login_form.password }}
+            </div>
 
-             <button type="submit" id="submit">Login</button>
-         <input ID="checkbox" class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-             <label  class="form-check-label" for="flexCheckChecked" style="color: white;">
-                Login means you agree to the <a target="_Blank" href='https://docs.google.com/document/d/1oezoLjyqZlttaF8o7DQH-ChQto7K7DUAjFeCeofkSjo/edit?usp=sharing' style="color: #2367aa">User Agreement</a>
-             </label>
-         </form>
-</body>
-<script>
+            <button type="submit" id="submit">Login</button>
+            <input ID="checkbox" class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+            <label  class="form-check-label" for="flexCheckChecked" style="color: white;">
+                Login means you agree to the <a target="_Blank" href='https://docs.google.com/document/d/1oezoLjyqZlttaF8o7DQH-ChQto7K7DUAjFeCeofkSjo/edit?usp=sharing' style="color: #fff"> User Agreement </a>
+            </label>
+        </form>
+    </div>
+    <div class="col-md-12" style="text-align:center;width:100%;color: white;position: absolute;bottom: 4vh;">
+        Don't have an account? <a href='/register/' style="color: #fff"> Sign up right now </a>
+    </div>
 
-    window.onload=function(){
+    </body>
+    <script>
 
-        /*在gameid增加对检查按钮的验证*/
-        var submitBtn = document.getElementById("submit");
+        window.onload=function(){
 
-        submitBtn.onclick = function () {
-            if(!document.getElementById("checkbox").checked) {
-                alert("You should agree to the User Agreement");
-                return false;
-            }
-        };
-    }
-</script>
-</html>
+            /*在gameid增加对检查按钮的验证*/
+            var submitBtn = document.getElementById("submit");
+
+            submitBtn.onclick = function () {
+                if(!document.getElementById("checkbox").checked) {
+                    alert("You should agree to the User Agreement");
+                    return false;
+                }
+            };
+        }
+    </script>
+    </html>
 {% endblock %}

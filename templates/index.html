@@ -1,10 +1,400 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-<h1>Home</h1>
-</body>
-</html>
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <!-- chatbot -->
+        <link rel="stylesheet" href="/static/css/botui.min.css" />
+        <link rel="stylesheet" href="/static/css/botui-theme-default.css" />
+        <script src="/static/js/vue.min.js"></script>
+        <script src="/static/js/botui.min.js"></script>
+        <!-- //chatbot -->
+        <link href="/static/css/style.css" rel='stylesheet' type='text/css' />
+        <link href="/static/css/font-awesome.css" rel="stylesheet">
+        <!-- jQuery -->
+        <script src="/static/js/jquery.min.js"></script>
+        <!-- Bootstrap Core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/static/js/bootstrap.min.js"></script>
+        <!-- chart -->
+        <script src="/static/js/Chart.js"></script>
+        <!-- //chart -->
+        <title>HomePage</title>
+        <script  type = "text/javascript" >
+
+            window.onload =function onload() {
+                {% autoescape off %}
+                    c_names = {{ c_names }};
+                    c_detail = {{ c_detail }};
+                    c_syllabus = {{ c_syllabus }}
+                    c_progress = {{ progress }};
+                    h_progress = {{ h_progress }};
+                    c_list = {{ c_list }}
+                    r_next_poolid_list ={{ r_next_poolid_list }}
+                    taskid ={{ taskid }};
+                    user_courses_list = {{ user_courses_list }}
+                    user_style = '{{ request.session.user_style }}'
+                    user_dashboard = '{{ request.session.user_dashboard }}'
+                    {#user_language = {{ request.session.user_language }}#}
+                {% endautoescape %}
+                {#data = data.replace('\'', '\"')#}
+                console.log(c_names)
+                console.log(c_detail)
+                //触发屏蔽
+                if (user_style=='none') {
+                    document.getElementById('srl_button').style.display = 'none'
+                    document.getElementById('chat_bot').style.display = 'none'
+                    document.getElementById('index_data').className = 'col-md-12'
+                }
+                // 获取detail
+                let detail= document.getElementById('course_detail');
+                var inner = '';
+                for(var i in c_names){
+                    if(i<1){
+                    temp=`
+                        <div role="tabpanel" class=" tab-pane fade in active" id="${i}">
+                            <div class="col-md-8">
+                                <h3>${c_names[i]} </h3>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-md-2" style="height: 30px;line-height:30px;margin-bottom: 1vh">
+                                       <a type="button"  style="width: 120px;" class="btn btn-warning" href="/class/?taskid=${taskid[i]}&poolid=${r_next_poolid_list[i]}&user_courseid=${user_courses_list[i]}">Enter Class</a>
+                                 </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 1vh">
+                                <div class="col-md-4" style="height: 30px;line-height:30px">
+                                    <div style="display: block" id='c_syllabus_button_${i}'>
+                                        <button class="btn btn-primary" style="width: 120px" onclick="course_syllabus(${i})">Syllabus</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div style="display: block" id='c_progress_button_${i}'><button class="btn btn-primary" style="width: 200px" onclick="course_progress(${i})">Check course progress</button></div>
+                                    <div class="progress" style="height: 30px;line-height: 30px;display:none;"id='c_progress_${i}'>
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70"
+                                             aria-valuemin="0" aria-valuemax="100" style="width:${c_progress[i]}">
+                                            ${c_progress[i]} C_Progress
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 1vh">
+                                <div class="col-md-4" style="height: 30px;line-height:30px">
+                                    <a type="button" style="width: 120px" class="btn btn-primary" href="/homework/?user_courseid=${user_courses_list[i]}&course_task=${taskid[i]}">Homework</a>
+                                </div>
+                                <div class="col-md-8">
+                                    <div style="display: ${user_dashboard}" id='h_progress_button_${i}'><button class="btn btn-primary" style="width: 200px" onclick="homework_progress(${i})">Check homework progress</button></div>
+                                    <div class="progress" style="height: 30px;line-height: 30px;display:none;"id='h_progress_${i}'>
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70"
+                                             aria-valuemin="0" aria-valuemax="100" style="width:${h_progress[i]}">
+                                            ${h_progress[i]} H_Progress
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 2vh;display:none;" id= "c_syllabus_${i}">
+                                ${c_syllabus[i]}
+                            </div>
+                            <div class="col-md-12" style="margin-top: 2vh">
+                                ${c_detail[i]}
+                            </div>
+                        </div>
+`;}
+                    else {
+                        temp=`
+                        <div role="tabpanel" class=" tab-pane fade" id="${i}">
+                            <div class="col-md-8">
+                                <h3>${c_names[i]} </h3>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-md-2" style="height: 30px;line-height:30px;margin-bottom: 1vh">
+                                       <a type="button"  style="width: 120px;" class="btn btn-warning" href="/class/?taskid=${taskid[i]}&poolid=${r_next_poolid_list[i]}&user_courseid=${user_courses_list[i]}">Enter Class</a>
+                                 </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 1vh">
+                                <div class="col-md-4" style="height: 30px;line-height:30px">
+                                    <div style="display: block" id='c_syllabus_button_${i}'>
+                                        <button class="btn btn-primary" style="width: 120px" onclick="course_syllabus(${i})">Syllabus</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div style="display: block" id='c_progress_button_${i}'><button class="btn btn-primary" style="width: 200px" onclick="course_progress(${i})">Check course progress</button></div>
+                                    <div class="progress" style="height: 30px;line-height: 30px;display:none;"id='c_progress_${i}'>
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70"
+                                             aria-valuemin="0" aria-valuemax="100" style="width:${c_progress[i]}">
+                                            ${c_progress[i]} C_Progress
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 1vh">
+                                <div class="col-md-4" style="height: 30px;line-height:30px">
+                                    <a type="button" style="width: 120px" class="btn btn-primary" href="/homework/?user_courseid=${user_courses_list[i]}&course_task=${taskid[i]}">Homework</a>
+                                </div>
+                                <div class="col-md-8">
+                                    <div style="display: ${user_dashboard}" id='h_progress_button_${i}'><button class="btn btn-primary" style="width: 200px" onclick="homework_progress(${i})">Check homework progress</button></div>
+                                    <div class="progress" style="height: 30px;line-height: 30px;display:none;"id='h_progress_${i}'>
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70"
+                                             aria-valuemin="0" aria-valuemax="100" style="width:${h_progress[i]}">
+                                            ${h_progress[i]} H_Progress
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 2vh;display:none;" id= "c_syllabus_${i}">
+                                ${c_syllabus[i]}
+                            </div>
+                            <div class="col-md-12" style="margin-top: 2vh">
+                                ${c_detail[i]}
+                            </div>
+                        </div>
+`
+                    }
+                    inner= inner+temp;
+                }
+                detail.innerHTML = inner;
+                //获取list
+                let list= document.getElementById('course_list');
+                var linner = '';
+                for(var i in c_list){
+                    if(i<1){
+                    temp=`
+                        <li role="presentation" class="active"><a href="#${i}" aria-controls="home" role="tab" data-toggle="tab">
+                                ${c_list[i]}
+                            </a></li>
+`;}
+                    else {temp=`
+                        <li role="presentation"><a href="#${i}" aria-controls="messages" role="tab" data-toggle="tab">
+                                ${c_list[i]}
+                        </a></li>
+`}
+                    linner= linner+temp;
+                }
+                list.innerHTML = linner;
+            }
+            function course_progress(name){
+                document.getElementById("c_progress_button_"+name).style.display='none';
+                document.getElementById("c_progress_"+name).style.display='block';
+            }
+            function homework_progress(name){
+                document.getElementById("h_progress_button_"+name).style.display='none';
+                document.getElementById("h_progress_"+name).style.display='block';
+            }
+            function course_syllabus(name){
+                {#document.getElementById("c_syllabus_button_"+name).style.display='none';#}
+                document.getElementById("c_syllabus_"+name).style.display='block';
+            }
+        </script >
+    </head>
+    <body >
+
+    <nav class="top1 navbar navbar-default navbar-static-top " style="padding-top: 1vh" role="navigation" >
+        <div class="navbar-header" style="display:inline-block;">
+            <p class="navbar-brand"style="font-size: 3vh" href="/index/">HKUSOC</p>
+        </div>
+        <div class="navbar-header" style="display:inline-block;">
+            <a class="navbar-brand"style="font-size: 3vh" href="/index/">Courses</a>
+        </div>
+        <div class="navbar-header" style="display:inline-block;" id='srl_button'>
+            <a class="navbar-brand"style="font-size: 3vh" href="/mysrl/">SRL Management</a>
+        </div>
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-nav navbar-right">
+            <span class="navbar-brand"  style="font-size: 3vh">Welcome</span>
+            {% if request.session.is_login %}
+                <span class="navbar-brand"  style="font-size: 3vh">{{ request.session.user_name }}</span>
+            {% else %}
+                <h1>You are not login</h1>
+            {% endif %}
+            <a class="navbar-brand btn btn-success btn-warng1"  style="font-size: 3vh" href="/logout/">Exit</a>
+        </ul>
+        <!-- /.navbar-static-side -->
+    </nav>
+    <div class="content_bottom">
+        <div class="col-md-9" style="height: 91vh" id='index_data'>
+            <div class="col-md-12" style="height: 90vh;">
+                <div class="vertical-tab col-md-3" role="tabpanel">
+                    <div class="inboxauto90">
+                        <h4>Courses List</h4>
+                        <ul class="nav nav-tabs" role="tablist" id="course_list">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="vertical-tab col-md-9" role="tabpanel">
+                    <div class="tab-content tabs" id="course_detail">
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3" style="height: 91vh" id="chat_bot">
+            <div class="col-md-12" style="height:80vh;background-color: #eee;padding: 1%">
+                <div style="height:3vh;background-color: #fff; width: 100%;text-align: center;">
+                    <p style="font-size: medium;margin: 1%">
+                        Chat with Jim 🤖️
+                    </p>
+                </div>
+                <div style="height:75vh;background-color: #fff; width: 100%;">
+                    <div class="botui-app-container " style="height: 96%" id="home-demo">
+                        <bot-ui></bot-ui>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var homeBot = BotUI('home-demo');
+
+        homeBot.message.add({
+            delay:1500,
+            content: 'Welcome to the 7345 class 😊 ~ My name is xx, and I\'ll be your AI assistant. Hope you would have a pleasant journey with us!'
+        }).then(function () {
+            return homeBot.message.add({
+                delay: 800,
+                content: 'What would you like to know about our system? '
+            });
+        }).then(function () {
+            return homeBot.action.button({
+                delay: 1000,
+                action: [{
+                    text: 'Structure of the system.',
+                    value: 'yes'
+                }, {
+                    text: 'Maybe later.',
+                    value: 'no'
+                }]
+            });
+        }).then(function (res) {
+            if(res.value == 'yes') {
+                Structure_of_the_system();
+            }
+            if(res.value == 'no') {
+                Maybe_later();
+            }
+        });
+        var Structure_of_the_system = function () {
+            homeBot.message.add({
+                delay: 400,
+                content: 'Great! There are two main modules in this system. Course module includes the ' +
+                    'learning materials and activities related to the knowledge in this course. SRL management ' +
+                    'module contains the relevant learning strategies that we hope you to practice. '
+            }).then(function () {
+                return homeBot.message.add({
+                    delay: 800,
+                    content: 'Anything else you wanna know?'
+                });
+            }).then(function () {
+                return homeBot.action.button({
+                    delay: 800,
+                    action: [{
+                        text: 'Why should I care about the course module?',
+                        value: 'course'
+                    }, {
+                        text: 'Why should I care about the SRL management module?',
+                        value: 'SRL'
+                    }, {
+                        text: 'Maybe later',
+                        value: 'later'
+                    }]
+                })
+            }).then(function (res) {
+                if(res.value == 'course') {
+                    return homeBot.message.add({
+                        delay: 400,
+                        content: 'The learning materials and activities in this module are closely related to the offline weekly' +
+                            ' session. We want to help you better understand the course contents of each week 👍👍'
+                    })
+                }
+                if(res.value == 'SRL') {
+                    return homeBot.message.add({
+                        delay: 400,
+                        content: 'We calculate your performance in the system and display your SRL competence in real time. Based ' +
+                            'on your status, we will recommend the SRL strategy that you need to practice. We want to help you ' +
+                            'improve your learning efficiency 👍👍'
+                    })
+                }
+                if(res.value == 'later') {
+                    return homeBot.message.add({
+                        delay: 400,
+                        content: 'No problem. I\'ll be here whenever you need 😁'
+                    })
+                }
+            }).then(function () {
+                return homeBot.message.add({
+                    delay:800,
+                    content:'Let\'s start the journey 😁'
+                })
+            });
+        }
+
+        var Maybe_later = function () {
+            homeBot.message.add({
+                delay: 400,
+                content: 'No problem. I\'ll be here whenever you need 😁'
+            })
+        }
+        var tutorial = function () {
+            homeBot.message.add({
+                delay: 1000,
+                content: "ok～Go ahead"
+            }).then(function () {
+                return homeBot.message.add({
+                    delay: 1000,
+                    content: 'What do you want to know??'
+                });
+            }).then(function () {
+                return homeBot.action.text({
+                    delay: 800,
+                    action: {
+                        value: 'SRL',
+                        placeholder: 'Please input your Question~~'
+                    }
+                });
+            }).then(function (res) {
+                return homeBot.message.bot({
+                    delay: 500,
+                    content: res.value + '\nA Good Question！'
+                });
+            }).then(function (res) {
+                return homeBot.message.bot({
+                    delay: 1400,
+                    content: 'BUT,SRY🧎‍♀️，I Dont know about that'
+                });
+            }).then(function (res) {
+                return homeBot.message.add({
+                    delay: 1200,
+                    type: 'embed',
+                    content: 'https://www.youtube.com/embed/b3sZXOsZVFM'
+                });
+            }).then(function (res) {
+                return homeBot.message.bot({
+                    delay: 200,
+                    content: 'This is the information from Couses pool.'
+                });
+            }).then(function (res) {
+                return homeBot.message.bot({
+                    delay: 1000,
+                    content: 'Or find help from your peer??👨‍🎓'
+                });
+            }).then(end);
+        };
+
+        var end = function () {
+            homeBot.message.add({
+                delay: 50,
+                content: 'What are you waiting for! Adjust quickly and keep learning!'
+            }).then(function () {
+                return homeBot.message.add({
+                    delay: 500,
+                    content: 'One more thing, try [SRL Management System](/mysrl/)'
+                });
+            })
+        };
+
+    </script>
+    </body>
+    </html>
+{% endblock %}

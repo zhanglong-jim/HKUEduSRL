@@ -1,0 +1,313 @@
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <!-- chatbot -->
+        <link rel="stylesheet" href="/static/css/botui.min.css" />
+        <link rel="stylesheet" href="/static/css/botui-theme-default.css" />
+        <script src="/static/js/vue.min.js"></script>
+        <script src="/static/js/botui.min.js"></script>
+        <!-- //chatbot -->
+        <link href="/static/css/style.css" rel='stylesheet' type='text/css' />
+        <link href="/static/css/font-awesome.css" rel="stylesheet">
+        <!-- jQuery -->
+        <script src="/static/js/jquery.min.js"></script>
+        <!-- Bootstrap Core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/static/js/bootstrap.min.js"></script>
+        <!-- chart -->
+        <script src="/static/js/Chart.js"></script>
+        <!-- //chart -->
+        <script  type = "text/javascript" >
+            window.onload = function onload() {
+                {% autoescape off %}
+                    f_course_list = {{ f_course_list }};
+                    r_course_list = {{ r_course_list }};
+                    f_poolid_list = {{ f_poolid_list }};
+                    r_poolid_list = {{ r_poolid_list }};
+                    user_courseid = {{ user_courseid }};
+                    taskid ={{ taskid }};
+                    user_style = '{{ request.session.user_style }}'
+                    {#user_language = {{ request.session.user_language }}#}
+                    //触发屏蔽
+                    if (user_style=='0')
+                    {
+                        document.getElementById('srl_button').style.display='none'
+                        document.getElementById('chat_bot').style.display='none'
+                        document.getElementById('tasks').style.height = '90%'
+                    }
+                    var f_course_list_inner = ''
+                    var r_course_list_inner = ''
+                    for(var i in f_course_list){
+                        temp=`<li><a href="/class/?taskid=${taskid}&poolid=${f_poolid_list[i]}&user_courseid=${user_courseid}" style="font-size: small">${f_course_list[i]}</a></li>`;
+                        f_course_list_inner = f_course_list_inner+temp;
+                    };
+                    for(var i in r_course_list){
+                        temp=`<li><a href="/class/?taskid=${taskid}&poolid=${r_poolid_list[i]}&user_courseid=${user_courseid}" style="font-size: small">${r_course_list[i]}</a></li>`;
+                        r_course_list_inner = r_course_list_inner+temp;
+                    };
+                    let f_course_inner = document.getElementById('f_course_list');
+                    f_course_inner.innerHTML = f_course_list_inner;
+                    let r_course_inner = document.getElementById('r_course_list');
+                    r_course_inner.innerHTML = r_course_list_inner;
+
+                {% endautoescape %}
+            }
+            {#window.onload = onload;#}
+        </script >
+        <title>Classroom</title>
+    </head>
+    <body >
+
+    <nav class="top1 navbar navbar-default navbar-static-top " style="padding-top: 1vh" role="navigation" >
+        <div class="navbar-header" style="display:inline-block;">
+            <p class="navbar-brand"style="font-size: 3vh" href="/index/">HKUSOC</p>
+        </div>
+        <div class="navbar-header" style="display:inline-block;">
+            <a class="navbar-brand"style="font-size: 3vh" href="/index/">Courses</a>
+        </div>
+        <div class="navbar-header" style="display:inline-block;">
+            <a class="navbar-brand"style="font-size: 3vh" href="/mysrl/" id="srl_button">SRL Management</a>
+        </div>
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-nav navbar-right">
+            <span class="navbar-brand"  style="font-size: 3vh">Welcome</span>
+            {% if request.session.is_login %}
+                <span class="navbar-brand"  style="font-size: 3vh">{{ request.session.user_name }}</span>
+            {% else %}
+                <h1>You are not login</h1>
+            {% endif %}
+            <a class="navbar-brand btn btn-success btn-warng1"  style="font-size: 3vh" href="/logout/">Exit</a>
+
+        </ul>
+        <!-- /.navbar-static-side -->
+    </nav>
+    <div class="content_bottom">
+        <div class="col-md-8" style="height: 91vh">
+            <div class="col-md-12" style="height: 56vh;padding:0">
+                <iframe width="100%" height="100%" src="
+            {{ videosrc }}
+"
+                        title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {#        <iframe class="markdown-player"#}
+                {#            src="//player.bilibili.com/player.html?aid=16572686&p=7&amp;high_quality=0&amp;danmaku=1&amp;as_wide=0"#}
+                {#                width="100%" height="100%" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>#}
+                {#        </div>#}
+            </div>
+            <div class="col-md-12" style="height: 34vh;margin-top: 1vh">
+                <div class="vertical-tab col-md-3" role="tabpanel">
+                    <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#Introduce" aria-controls="home" role="tab" data-toggle="tab">Introduce</a></li>
+                            <li role="presentation"><a href="#Question1" aria-controls="messages" role="tab" data-toggle="tab">Question1</a></li>
+                            <li role="presentation"><a href="#Question2" aria-controls="messages" role="tab" data-toggle="tab">Question2</a></li>
+                            <li role="presentation"><a href="#Question3" aria-controls="messages" role="tab" data-toggle="tab">Question3</a></li>
+                        </ul>
+                </div>
+                <div class="vertical-tab col-md-9" role="tabpanel" >
+                    <!-- Nav tabs -->
+                    <!-- Tab panes -->
+                    <div class="tab-content tabs">
+                        <div role="tabpanel" class="inboxauto32 tab-pane fade in active" id="Introduce">
+                            <h3>Handouts</h3>
+                            <div id ='Handouts'>
+                                {{ handouts }}
+                            </div>
+
+                        </div>
+                        <div role="tabpanel" class="inboxauto32 tab-pane fade" id="Question1">
+                            <h3>Question 1</h3>
+                            <div id = 'context1'>
+                                <p>{{ context1 }}</p>
+                            </div>
+                            <h4>Your answer</h4>
+                            <form method="post" action="/class/submit/?user_courseid={{ user_courseid }}&taskid={{ taskid }}&poolid={{ poolid }}&qs=question1">
+                                {% csrf_token %}
+                                <textarea name="data" class="form-control"  rows="3">{{ answer1 }}</textarea>
+                                <button type="submit" class="btn btn-primary" style="margin-top: 20px;width: 120px">
+                                    <span class="glyphicon glyphicon-ok"></span> Submit </button>
+                            </form>
+                        </div>
+                        <div role="tabpanel" class="inboxauto32 tab-pane fade" id="Question2">
+                            <h3>Question 2</h3>
+                            <div id = 'context2'>
+                                <p>{{ context2 }}</p>
+                            </div>
+                            <h4>Your answer</h4>
+                            <form method="post" action="/class/submit/?user_courseid={{ user_courseid }}&taskid={{ taskid }}&poolid={{ poolid }}&qs=question2">
+                                {% csrf_token %}
+                                <textarea name="data" class="form-control"  rows="3">{{ answer2 }}</textarea>
+                                <button type="submit" class="btn btn-primary" style="margin-top: 20px;width: 120px">
+                                    <span class="glyphicon glyphicon-ok"></span> Submit </button>
+                            </form>
+                        </div>
+                        <div role="tabpanel" class="inboxauto32 tab-pane fade" id="Question3">
+                            <h3>Question 3</h3>
+                            <div id = 'context3'>
+                                <p>{{ context3 }}</p>
+                            </div>
+                            <h4>Your answer</h4>
+                            <form method="post" action="/class/submit/?user_courseid={{ user_courseid }}&taskid={{ taskid }}&poolid={{ poolid }}&qs=question3">
+                                {% csrf_token %}
+                                <textarea name="data" class="form-control"  rows="3">{{ answer3 }}</textarea>
+                                <button type="submit" class="btn btn-primary" style="margin-top: 20px;width: 120px">
+                                    <span class="glyphicon glyphicon-ok"></span> Submit </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" style="height: 91vh">
+            <div class="col-md-12" style="height: 50%;background-color: #eee;;overflow: auto;padding: 1%" id="tasks">
+                <div class="col-md-12" style="height:100%;background-color: #fff;overflow: auto;">
+                    <div class="col-md-6" style="padding-left: 5px">
+                        <div class="col-sm-12" style="height: 10%;">
+                            <h4 align="center">Finished Tasks</h4>
+                        </div>
+                        <div class="vertical-tab col-md-12" style="width: 100%">
+                            <ul class="nav nav-tabs" id="f_course_list">
+{#                                <li><a href="#" style="font-size: small">Is Self-regulation work?</a></li>#}
+{#                                <li><a href="#" style="font-size: small">What is the SRL Strategy?</a></li>#}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6"style="padding-right: 5px;padding-left: 5px">
+                        <div class="col-sm-12" style="height: 10%;">
+                            <h4 align="center">Recommendation</h4>
+                        </div>
+                        <div class="vertical-tab col-md-12" style="width: 100%;">
+                            <ul class="nav nav-tabs"id="r_course_list">
+{#                                <li><a href="#" style="font-size: small">Goal Setting</a></li>#}
+{#                                <li><a href="#" style="font-size: small">environment is important</a></li>#}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" style="height: 50%;background-color: #eee;padding: 1%" id="chat_bot">
+                <div style="background-color: #fff; width: 100%;text-align: center;">
+                    <p style="font-size: medium;margin: 1%">
+                        Chat with Jim 🤖️
+                    </p>
+                </div>
+                <div class="botui-app-container" id="home-demo">
+                    <bot-ui></bot-ui>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var homeBot = BotUI('home-demo');
+
+        homeBot.message.add({
+            content: 'Hi there!'
+        }).then(function () {
+            return homeBot.message.add({
+                delay: 1500,
+                content: 'A new session will start in few days! Are you ready 😉?'
+            });
+        }).then(function () {
+            return homeBot.action.button({
+                delay: 800,
+                action: [{
+                    text: '😊Yes！！！!',
+                    value: 'sure'
+                }, {
+                    text: 'No😒',
+                    value: 'skip'
+                }]
+            });
+        }).then(function (res) {
+            if(res.value == 'sure') {
+                return homeBot.message.add({
+                    delay:400,
+                    content: 'Perfect! Now, let\'s set new learning goals for the upcoming session 🤔'
+                }).then(function () {
+                    return homeBot.message.add({
+                        delay:600,
+                        content:'Click here: [link to goal map in SRL module](/mysrl/)'
+                    })
+                })
+            }
+            if(res.value == 'skip') {
+                return homeBot.message.add({
+                    delay:400,
+                    content: 'Oops! Please double check the course schedule. Whenever you\'re ready, don\'t forget to set goals for the upcoming session 😊'
+                }).then(function () {
+                    return homeBot.message.add({
+                        delay:600,
+                        content:'Click here: [link to goal map in SRL module](/mysrl/)'
+                    })
+                })
+            }
+        });
+
+        var tutorial = function () {
+            homeBot.message.add({
+                delay: 1000,
+                content: "ok～Go ahead"
+            }).then(function () {
+                return homeBot.message.add({
+                    delay: 1000,
+                    content: '请你说一些简单的问题'
+                });
+            }).then(function () {
+                return homeBot.message.add({
+                    delay: 1200,
+                    content: "<a href='/mysrl/'>test</a>"
+                });
+            }).then(function () {
+                return homeBot.action.text({
+                    delay: 800,
+                    action: {
+                        value: 'come on 来吧，宝贝',
+                        placeholder: '麻冷儿写问题吧'
+                    }
+                });
+            }).then(function (res) {
+                return homeBot.message.bot({
+                    delay: 500,
+                    content: res.value + ' 真是个好问题！'
+                });
+            }).then(function (res) {
+                return homeBot.message.bot({
+                    delay: 1400,
+                    content: '很好，我不会，你可以去别的地儿问了，例如：'
+                });
+            }).then(function (res) {
+                return homeBot.message.add({
+                    delay: 1200,
+                    type: 'embed',
+                    content: 'https://www.baidu.com//'
+                });
+            }).then(function (res) {
+                return homeBot.message.bot({
+                    delay: 2500,
+                    content: '好了，你可以问度娘了，找到答案，别忘告诉我哈'
+                });
+            }).then(function (res) {
+                return homeBot.message.bot({
+                    delay: 1000,
+                    content: '别忘记，告，诉，我。'
+                });
+            }).then(end);
+        };
+
+        var end = function () {
+            homeBot.message.add({
+                delay: 1000,
+                content: 'What are you waiting for! Adjust quickly and keep learning!'
+            }).then(function () {
+                return homeBot.message.add({
+                    delay: 1000,
+                    content: 'Hurry up!'
+                });
+            });
+        };
+
+    </script>
+    </body>
+    </html>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <!-- chatbot -->
+        <link rel="stylesheet" href="/static/css/botui.min.css" />
+        <link rel="stylesheet" href="/static/css/botui-theme-default.css" />
+        <script src="/static/js/vue.min.js"></script>
+        <script src="/static/js/botui.min.js"></script>
+        <!-- //chatbot -->
+        <link href="/static/css/style.css" rel='stylesheet' type='text/css' />
+        <link href="/static/css/font-awesome.css" rel="stylesheet">
+        <!-- jQuery -->
+        <script src="/static/js/jquery.min.js"></script>
+        <!-- Bootstrap Core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/static/js/bootstrap.min.js"></script>
+        <!-- chart -->
+        <script src="/static/js/Chart.js"></script>
+        <!-- //chart -->
+        <title>management</title>
+    </head>
+    <body >
+
+    <nav class="top1 navbar navbar-default navbar-static-top " style="padding-top: 1vh" role="navigation" >
+        <div class="navbar-header" style="display:inline-block;">
+            <p class="navbar-brand"style="font-size: 3vh" href="/index/">HKU Smart Online Course Management</p>
+        </div>
+{#        <div class="navbar-header" style="display:inline-block;">#}
+{#            <a class="navbar-brand"style="font-size: 3vh" href="/index/">Courses</a>#}
+{#        </div>#}
+{#        <div class="navbar-header" style="display:inline-block;" id='srl_button'>#}
+{#            <a class="navbar-brand"style="font-size: 3vh" href="/mysrl/">SRL Management</a>#}
+{#        </div>#}
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-nav navbar-right">
+            <span class="navbar-brand"  style="font-size: 3vh">Welcome</span>
+            {% if request.session.is_login %}
+                <span class="navbar-brand"  style="font-size: 3vh">{{ request.session.rootname }}</span>
+            {% else %}
+                <h1>You are not login</h1>
+            {% endif %}
+            <a class="navbar-brand btn btn-success btn-warng1"  style="font-size: 3vh" href="/logout/">Exit</a>
+        </ul>
+        <!-- /.navbar-static-side -->
+    </nav>
+    <div class="content_bottom">
+        {% if message %}
+                 <div class="alert alert-warning">{{ message }}</div>
+        {% endif %}
+        <div class="col-md-12" id='index_data'>
+        <h1>Course Pool update</h1>
+            <p>The pool ID cannot be wrong. If the ID already exists, then the context will be overwritten.</p>
+            <form method="post" action="/management/?style=pool">
+                {% csrf_token %}
+                <input  name="poolid" class="input-group" placeholder="poolid,name eg: SRL_zhanglong_000212">
+                <input  name="video" class="input-group" placeholder="video src,eg:https://www.youtube.com/embed/b3sZXOsZVFM">
+                <p>Context for the Questions</p>
+                <input  name="context1" class="input-group" placeholder="context1">
+                <input  name="context2" class="input-group" placeholder="context2">
+                <input  name="context3" class="input-group" placeholder="context3">
+                <textarea name="handouts" class="form-control" rows =6>Handouts,eg:
+                    <p>test eg</p>
+                    <img src="/static/images/SRL_pic.jpg"style="width: 80%">
+                </textarea>
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;width: 120px">
+                    <span class="glyphicon glyphicon-ok"></span> Submit
+                </button>
+            </form>
+        </div>
+
+        <div class="col-md-12"id='index_data'>
+        <h1>Course Edit</h1>
+            <p>The Course ID cannot be wrong. If the ID already exists, then the context will be overwritten.</p>
+            <form method="post" action="/management/?style=course">
+                {% csrf_token %}
+                <input  name="courseid" class="input-group" placeholder="courseid,name eg: 0 or 1 or 2">
+                <input  name="teacher" class="input-group" placeholder="teacher, eg: Zhanglong">
+                <input  name="name" class="input-group" placeholder="cousrse name,eg: SRL Strategy">
+                <input  name="tasknum" class="input-group" placeholder="tasknum name,eg: 4">
+                <textarea name="detail" class="form-control" rows =6>Introduce detail ,eg:
+                    <img src="/static/images/SRL_pic.jpg" style="width: 60%;">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius, mi eros viverra massa, vitae consequat nisi justo in tortor.</p>
+                </textarea>
+                <textarea name="c_syllabus" class="form-control" rows =6>c_syllabus detail ,eg:
+                    <img src="/static/images/SRL_pic.jpg" style="width: 60%;">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce semper, magna a ultricies volutpat, mi eros viverra massa, vitae consequat nisi justo in tortor. Proin accumsan felis ac felis dapibus, non iaculis mi varius, mi eros viverra massa, vitae consequat nisi justo in tortor.</p>
+                </textarea>
+                <textarea name="list" class="form-control" rows =6>The left list detail, only change img src and the name(label p context), eg:
+                    <img src="/static/images/SRL_pic.jpg" style="width: 100%;">
+                                <p>SRL Strategy</p>
+                </textarea>
+                <textarea name="task_list" class="form-control" rows =6>Task name list. Please use followed form.
+                    ['Is SRL work?','What is SRL?','Goal Setting','Environment']
+                </textarea>
+                <textarea name="task_topic" class="form-control" rows =6>Homework topic. Please use followed form.
+                    {"0":"asdsadasd","1":"ihionas","2":"as1dasdwww","3":"99xcjia"}
+                </textarea>
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;width: 120px">
+                    <span class="glyphicon glyphicon-ok"></span> Submit
+                </button>
+            </form>
+        </div>
+
+        <div class="col-md-12"id='index_data'>
+        <h1>User create</h1>
+            <p>Cannot be used. Please connect with Zhang Long to upload</p>
+        </div>
+    </div>
+
+    </body>
+    </html>
+{% endblock %}

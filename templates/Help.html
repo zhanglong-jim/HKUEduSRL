@@ -85,24 +85,28 @@ input:disabled + label {/*禁用的指针*/
 <!-- //star -->
 
      <!-- Navigation -->
-       <nav class="top1 navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; min-height: 70px;">
-            <div class="navbar-header" style="margin-top:7px">
-                <a class="navbar-brand" href="/mysrl/">HKUSRL MySRL</a>
-            </div>
-            <!-- /.navbar-header -->
-            <ul class="nav navbar-nav navbar-right">
-            	<span class="navbar-brand"  style="margin-top:7px">Welcome</span>
-                {% if request.session.is_login %}
-
-            	<span class="navbar-brand"  style="margin-top:7px">{{ request.session.user_name }}</span>
-                {% else %}
+       <nav class="top1 navbar navbar-default navbar-static-top " style="padding-top: 1vh" role="navigation" >
+        <div class="navbar-header" style="display:inline-block;">
+            <p class="navbar-brand"style="font-size: 3vh" href="/index/">HKUSOC</p>
+        </div>
+        <div class="navbar-header" style="display:inline-block;">
+            <a class="navbar-brand"style="font-size: 3vh" href="/index/">Courses</a>
+        </div>
+        <div class="navbar-header" style="display:inline-block;" id='srl_button'>
+            <a class="navbar-brand"style="font-size: 3vh" href="/mysrl/">SRL Management</a>
+        </div>
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-nav navbar-right">
+            <span class="navbar-brand"  style="font-size: 3vh">Welcome</span>
+            {% if request.session.is_login %}
+                <span class="navbar-brand"  style="font-size: 3vh">{{ request.session.user_name }}</span>
+            {% else %}
                 <h1>You are not login</h1>
-                {% endif %}
-            	<a class="navbar-brand btn btn-success btn-warng1"  style="margin-top:10px; height: 45px;" href="/logout/">Exit</a>
-
-			</ul>
-            <!-- /.navbar-static-side -->
-        </nav>
+            {% endif %}
+            <a class="navbar-brand btn btn-success btn-warng1"  style="font-size: 3vh" href="/logout/">Exit</a>
+        </ul>
+        <!-- /.navbar-static-side -->
+    </nav>
 <div style="margin:30px">
     <div class="content_bottom">
          <div class="col-md-12 span_3">

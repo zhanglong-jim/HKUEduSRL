@@ -1,0 +1,154 @@
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <!-- chatbot -->
+        <link rel="stylesheet" href="/static/css/botui.min.css" />
+        <link rel="stylesheet" href="/static/css/botui-theme-default.css" />
+        <script src="/static/js/vue.min.js"></script>
+        <script src="/static/js/botui.min.js"></script>
+        <!-- //chatbot -->
+        <link href="/static/css/style.css" rel='stylesheet' type='text/css' />
+        <link href="/static/css/font-awesome.css" rel="stylesheet">
+        <!-- jQuery -->
+        <script src="/static/js/jquery.min.js"></script>
+        <!-- Bootstrap Core CSS -->
+        <link href="/static/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+
+        <!-- chart -->
+        <script src="/static/js/Chart.js"></script>
+        <!-- //chart -->
+    <!--file input jq-->
+{#    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">#}
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery-ui.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+        <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/vendor/jquery.ui.widget.js"></script>
+    <script src="/static/js/jquery.iframe-transport.js"></script>
+    <script src="/static/js/jquery.fileupload.js"></script>
+    <script src="/static/js/jquery.fileupload-process.js"></script>
+    <script src="/static/js/jquery.fileupload-validate.js"></script>
+    <script src="/static/js/progress-bar-upload.js"></script>
+    <!--//file input jq-->
+        <script  type = "text/javascript" >
+            window.onload = function onload() {
+                {% autoescape off %}
+                    {#submit_data = {{ submit_data }};#}
+                    {#submit_urls = {{ submit_urls }};#}
+                    course_task_list = {{ course_task_list }};
+                    user_style = {{ request.session.user_style }}
+                    {#user_language = {{ request.session.user_language }}#}
+                {% endautoescape %}
+                    var task= document.getElementById('task');
+                    var inner = ''
+                    for(var i in course_task_list){
+                        temp=`
+-
+<a href="/homework/?user_courseid={{ user_courseid }}&course_task=${i}">${course_task_list[i]}</a>
+-
+`;
+                        inner = inner+ temp;
+                    }
+                    task.innerHTML = inner;
+                    //触发屏蔽
+                    if (user_style=='0')
+                    {
+                        document.getElementById('srl_button').style.display='none'
+                    }
+            }
+        </script >
+        <title>Homework Submit</title>
+    </head>
+    <body style="background-color: #fff">
+        <nav class="top1 navbar navbar-default navbar-static-top " style="padding-top: 1vh" role="navigation" >
+            <div class="navbar-header" style="display:inline-block;">
+                <p class="navbar-brand"style="font-size: 3vh" href="/index/">HKUSOC</p>
+            </div>
+            <div class="navbar-header" style="display:inline-block;">
+                <a class="navbar-brand"style="font-size: 3vh" href="/index/">Courses</a>
+            </div>
+            <div class="navbar-header" style="display:inline-block;">
+                <a class="navbar-brand"style="font-size: 3vh" href="/mysrl/" id="srl_button">SRL Management</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-nav navbar-right">
+                <span class="navbar-brand"  style="font-size: 3vh">Welcome</span>
+                {% if request.session.is_login %}
+                    <span class="navbar-brand"  style="font-size: 3vh">{{ request.session.user_name }}</span>
+                {% else %}
+                    <h1>You are not login</h1>
+                {% endif %}
+                <a class="navbar-brand btn btn-success btn-warng1"  style="font-size: 3vh" href="/logout/">Exit</a>
+
+            </ul>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div class="content_bottom" style="padding-left: 2vh">
+            <h1>{{ course_name }} -- {{ task_name }}</h1>
+            <div class="col-md-12" id="task">
+{#                {{ course_task_list }}#}
+            </div>
+            <div class="col-md-12" >
+                <h3>Topic</h3>
+                <p>{{ task_topic }}</p>
+            </div>
+            <div class="col-md-12">
+                <h3>Answer</h3>
+                <div class="col-md-12"style="margin: 2vh">
+                    <form method="post" action="/homework/data/?user_courseid={{ user_courseid }}&course_task={{ course_task }}">
+                        {% csrf_token %}
+                        <textarea name="data" class="form-control"  rows="3">{{ submit_data }}</textarea>
+                        <button type="submit" class="btn btn-primary" style="margin-top: 20px;width: 120px">
+                            <span class="glyphicon glyphicon-ok"></span> Submit </button>
+                    </form>
+                </div>
+                <h3>Appendix</h3>
+                <div class="col-md-12" style="margin: 2vh">
+                    <p>Last File : {{ last_url }}</p>
+                </div>
+                <div class="col-md-12"style="margin: 2vh">
+{#                    <form method="post" action="">#}
+{#                        {% csrf_token %}#}
+{#                        <input type="hidden" name="next" value="{{ request.path }}">#}
+{#                        <button type="submit" class="btn btn-danger pull-right">#}
+{#                            <span class="glyphicon glyphicon-trash"></span> Clean Data#}
+{#                        </button>#}
+{#                    </form>#}
+                    <div>
+                        <div style="margin-bottom: 20px;">
+{#                             1. 添加附件的按钮#}
+                            <button type="button" class="btn btn-primary js-upload-photos" style="width: 120px">
+                                <span class="glyphicon glyphicon-cloud-upload"></span> Chose File
+                            </button>
+
+{#                             2. 上传图片的插件#}
+                            <input id="fileupload" type="file" name="file" multiple
+                                   style="display: none;"
+                                   data-url="/homework/add/?user_courseid={{ user_courseid }}&course_task={{ course_task }}"
+                                   data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+                        </div>
+
+{#                         3. 显示上传的文件#}
+                        <table id="gallery" class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>FileRecord of this file upload</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </body>
+
+
+</html>
+{% endblock %}

@@ -16,11 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from HKUEduSRLApp import views
+from HKUEduSRLApp import root_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.login),
     path('login/',views.login),
+    path('register/',views.register),
     path('index/',views.index),
+    path('class/',views.classroom),
+    path('class/submit/',views.ans_submit),
+    path('homework/',views.homework),
+    path('homework/add/',views.fujian_add),
+    path('homework/data/',views.text),
     path('jsmind/',views.jsmind),
     path('add/', views.record_add),
     path('logout/',views.logout),
@@ -32,5 +39,7 @@ urlpatterns = [
     path('Task/',views.Task),
     path('Time/',views.Time),
     path('Help/',views.Help),
-    path('Sel/',views.Sel)
+    path('Sel/',views.Sel),
+    path('root_login/',root_views.root_login),
+    path('management/',root_views.management),
 ]
